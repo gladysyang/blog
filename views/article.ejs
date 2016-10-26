@@ -1,0 +1,44 @@
+<%- include header %>
+    <p class="info">
+        <font>作者:</font> <a href="/u/<%=post.author%>"><%=post.author%></a>  |
+        <font>发表日期:</font> <%=post.createDate.minute %>
+        <font>标签：</font>
+        <%if (post.tags) { post.tags.forEach(function(tag, index) { %>
+        <% if (tag) { %>
+        <a href="/tag/<%=tag %>" class="tag"><%=tag %></a>
+        <% } }) %>
+        <% }%>
+
+        <% if (user && user.name == post.author) { %>
+        <a href="/delete/<%=post.author%>/<%=post.createDate.minute%>/<%=post.title%>" class="delete">删除</a>&nbsp;
+        <a href="/edit/<%=post.author%>/<%=post.createDate.minute%>/<%=post.title%>" class="edit">编辑</a>
+        <% } %>
+
+        <% if (post.reprint_info) { %>
+            <% var flag = 1 %>
+            <% if (user && (user.name != post.author)) { %>
+                <% if ((post.reprint_info.reprint_from != undefined) && (user.name == post.reprint_info.reprint_from.name)) { %>
+                    <% flag = 0 %>
+                <% } %>
+                <% if(post.reprint_info.reprint_to != undefined) { %>
+                    <% post.reprint_info.reprint_to.forEach(function(reprint_to, index) { %>
+                        <% if (user.name == reprint_to.name) { %>
+                            <% flag = 1 %>
+                        <% } %>
+                    <% }) %>
+                <% } %>
+            <% } else { %>
+            <% flag = 0 %>
+            <% } %>
+            <% if (flag) { %>
+            <span><a href="/reprint/<%=post.author%>/<%=post.createDate.minute%>/<%=post.title%>" class="edit">转载</a></span>
+            <% } %>
+        <% } %>
+    </p>
+    <p class="content"><%- post.content%></p>
+    <div class="pv-div">
+        <span>阅读：(<%=post.pv ? post.pv : 0 %>)</span>&nbsp;&nbsp;
+        <span>评论：(<%=post.comments ? post.comments.length : 0 %>)</span>
+    </div>
+<%- include comment %>
+<%- include footer %>

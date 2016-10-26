@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <!-- <style type="text/css">
+        .head {
+            width: 3.5em;
+            height: 3.5em;
+            border-radius: 1.7em;
+            float: left;
+            margin-right: 1em;
+        }
+    </style> -->
+  </head>
+  <body>
+    <header>
+   <!-- <% if(title.head) {%>
+       <div>
+           <img src="/images/c044fa0385110bf10e62183568943384.jpg" class="head"><h1><%=title.name %></h1>
+       </div>
+   <%} else {%> -->
+        <h1><%=title %></h1>
+    <!-- <%}%> -->
+    </header>
+    <nav>
+        <span><a href="/" title="首页">首页</a></span>
+        <span><a href="/tags" title="标签">标签</a></span>
+    <% if(user != null) {%>
+        <span><a href="/u/<%=user.name%>" title="个人主页">个人主页</a></span>
+        <span><a href="/archive/<%=user.name%>" title="存档">存档</a></span>
+        <span><a href="/post" title="发表">发表</a></span>
+        <span><a href="/logout" title="退出">退出</a></span>
+    <%} else {%>
+        <span><a href="/login" title="登陆">登录</a></span>
+        <span><a href="/reg" title="注册">注册</a></span>
+    <%}%>
+        <form method="get" action="/search">
+            <input type="text" name="keyword" class="keyword" placeholder="关键字">
+            <input type="submit" value="搜索" class="search">
+        </form>
+        <div class="link">
+            <ul style="list-style:none;">
+                <li>
+                    <h3>友情链接</h3>
+                </li>
+                <li>
+                    <a href="http://top.chinaz.com/site_love.alipay.com.html">支付宝公益网</a>
+                    <a href="http://top.chinaz.com/site_love.alipay.com.html">支付宝公益网</a>
+                    <a href="http://top.chinaz.com/site_love.alipay.com.html">支付宝公益网</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <article>
+    <% if (success) { %>
+    <div class="message"><%=success %></div>
+    <% } %>
+    <% if (error) { %>
+    <div class="message"><%=error %></div>
+    <% } %>
+

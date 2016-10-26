@@ -1,0 +1,30 @@
+<%- include header %>
+    <% posts.forEach(function(post, index) {%>
+    <p><h2><a href="/u/<%=post.author%>/<%=post.createDate.minute%>/<%=post.title%>"></p><%=post.title%></a></h2>
+    <p class="info">
+        <font>作者:</font>
+        <a href="/u/<%=post.author%>"><img src="<%=post.head ? post.head : ''%>" class="head"></a>
+        <a href="/u/<%=post.author%>"><%=post.author%></a>  |
+        <font>发表日期:</font> <%=post.createDate.minute %>
+        <font>标签：</font>
+        <%if (post.tags) { post.tags.forEach(function(tag, index) { %>
+        <% if (tag) { %>
+        <a href="/tag/<%=tag %>" class="tag"><%=tag %></a>
+        <% } }) %>
+        <% } %>
+
+        <% if (user && user.name == post.author) { %>
+        <a href="/delete/<%=post.author%>/<%=post.createDate.minute%>/<%=post.title%>" class="delete">删除</a>
+        <a href="/edit/<%=post.author%>/<%=post.createDate.minute%>/<%=post.title%>" class="edit">编辑</a>
+        <% } %>
+    </p>
+    <p  class="content"><%- post.content%> ......
+        <a href="/u/<%=post.author%>/<%=post.createDate.minute%>/<%=post.title%>">详情</a>
+    </p>
+    <div class="pv-div">
+        <span>阅读：(<%=post.pv ? post.pv : 0 %>)</span>&nbsp;&nbsp;
+        <span>评论：(<%=post.comments ? post.comments.length : 0 %>)</span>
+    </div>
+    <%})%>
+<%- include page %>
+<%- include footer %>

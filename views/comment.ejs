@@ -1,0 +1,20 @@
+<% if (post.comments) { post.comments.forEach(function(comment, index) { %>
+    <p class="comment">
+        <a href="<%=comment.website%>"><img src="/images/c044fa0385110bf10e62183568943384.jpg" class="head"><%=comment.name %></a>
+        <span class="comment-time">回复于<%=comment.time %></span>
+        <p><%- comment.content %></p>
+    </p>
+    <%}); }%>
+    <form method="post" class="comment-form">
+        <% if (user) { %>
+        姓名： <input type="text" name="name" value="<%=user.name %>" id="name"><br>
+        邮箱： <input type="text" name="email" value="<%=user.email %>" id="email"><br>
+        网址： <input type="text" name="website" value="/u/<%=user.name%>" id="website"><br>
+        <% } else { %>
+        姓名： <input type="text" name="name" id="name"><br>
+        邮箱： <input type="text" name="email" id="email"><br>
+        网址： <input type="text" name="website" value="http://" id="website"><br><br>
+        <% } %>
+        <textarea name="content" rows="5" cols="80" id="content"></textarea><br>
+        <input type="button" value="留言" class="comment-submit">
+    </form>
