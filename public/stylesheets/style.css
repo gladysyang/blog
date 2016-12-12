@@ -194,3 +194,43 @@ h2 a:hover {
 .link a {
   padding-top: .1em;
 }
+/* Calendar */
+.calendar {
+  position: absolute;
+  float: right;
+  width: 200px;
+  height: 200px;
+  background-color: gray;
+  top: 20%;
+  right: 10%;
+  text-align: center;
+}
+.calendar-header {
+  height: 15%;
+  width: 100%;
+}
+.calendar-header div {
+  display: inline;
+  height: 100%;
+}
+.previous {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.next {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.year-div {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

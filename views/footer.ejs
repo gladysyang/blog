@@ -1,4 +1,44 @@
     </article>
+    <div class="calendar">
+        <div class="calendar-header">
+            <div class="previous">></div>
+            <div class="year-div"></div>
+            <div class="next"><</div>
+        </div>
+        <div class="week"></div>
+        <div class="date">
+            <table class="date-table">
+
+            </table>
+        </div>
+    </div>
   </body>
 </html>
 <script type="text/javascript" src="/javascripts/blog.js"></script>
+<script type="text/javascript">
+    var today = new Date();
+    var year = today.getFullYear() + '年' + (today.getMonth() + 1) + '月';
+    var month = today.getMonth();
+    var week = today.getDay();
+    var day = today.getDate();
+    var days;
+
+    if (month === '1' || month === '3' || month === '5' || month === '7' || month === '8' || month === '10' || month === '12') {
+        days = 31;
+    } else if (month === '4' || month === '6' || month === '9' || month === '11') {
+        days = 30;
+    } else if (month === '2') {
+        if (isLeapYear(year)) {
+            days = 29;
+        } else {
+            days = 28;
+        }
+    }
+
+    $('.year-div').text(year);
+
+    /*如果返回true,就是闰年，如果返回false,就是非闰年*/
+    function isLeapYear(year) {
+        return (year % 4 == 0) && (year % 100 != 0 || year % 400 == 0);
+    }
+</script>
